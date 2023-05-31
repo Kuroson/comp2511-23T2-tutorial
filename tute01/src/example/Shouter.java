@@ -14,7 +14,23 @@ package example;
  * - toString
  */
 public class Shouter {
+    private String name; // this.name
+
+    public Shouter(String initialName) {
+        this.name = initialName;
+    }
+
+    public void setName(String name1) {
+        this.name = name1;
+    }
+
+    public String getName() {
+        return this.name;
+        // return name;
+    }
+
     public static void main(String[] args) {
-        // TODO
+        Shouter s = new Shouter("Hello");
+        System.out.println(s.getName());
     }
 }
