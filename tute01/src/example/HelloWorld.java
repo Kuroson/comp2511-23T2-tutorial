@@ -8,7 +8,9 @@ package example;
  */
 public class HelloWorld {
     public static void main(String[] args) {
-        // TODO Complete this method
-
+        // print(...)
+        // printf(...)
+        // console.log
+        System.out.println("Hello World");
     }
 }

@@ -14,7 +14,27 @@ package example;
  * - toString
  */
 public class Shouter {
+    // Declare class variables aka attributes
+    private String message;
+
+    public Shouter(String message) {
+        this.message = message;
+        // this.message = message1;
+    }
+
+    public void setMessage(String newMessage) {
+        this.message = newMessage;
+    }
+
+    public String getMessage() {
+        return this.message;
+    }
+
     public static void main(String[] args) {
-        // TODO
+        Shouter s = new Shouter("Hello World");
+        System.out.println(s.getMessage());
+        s.setMessage("Hello Comp2511");
+        System.out.println(s.getMessage());
+        // System.out.println(this.message);
     }
 }
