@@ -7,8 +7,11 @@ package example;
  *
  */
 public class HelloWorld {
-    public static void main(String[] args) {
-        // TODO Complete this method
+    // print(...)
+    // console.log(...)
+    // printf(...)
 
+    public static void main(String[] args) {
+        System.out.println("Hello World");
     }
 }
