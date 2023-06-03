@@ -70,7 +70,7 @@ public class Employee {
         // This is because it handles nulls properly.
         // If we were to use something like:
         // return this.name.equals(other.name) && this.salary == other.salary;
-        // We would get a NullPointerException if other.name was null.
+        // We would get a NullPointerException if this.name was null.
     }
 
     public static void main(String[] args) {
