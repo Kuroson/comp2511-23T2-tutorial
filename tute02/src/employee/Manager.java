@@ -42,6 +42,8 @@ public class Manager extends Employee {
 
         // Because super.equals(...) already checks if they're the same class
         // We can typecast to Manager without worrying
+        // NOTE: Every "dangerous" typecast operation should always be preceded by a check
+        // I think its OK if you added a check here anyway
         Manager other = (Manager) obj;
 
         // Now we only need to compare the attributes that the subclass (Manager) introduces

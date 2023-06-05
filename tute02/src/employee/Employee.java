@@ -38,10 +38,19 @@ public class Employee {
         this.name = name;
     }
 
+    /**
+     * Gets the salary of the employee
+     * @return salary of employee
+     */
     public double getSalary() {
         return this.salary;
     }
 
+    /**
+     * Sets the salary of the employee
+     * @param salary salary to set
+     * @precondition salary > 0
+     */
     public void setSalary(double salary) {
         this.salary = salary;
     }
