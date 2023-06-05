@@ -1,0 +1,50 @@
+name: Trigger Deploy To Students
+
+on:
+  push:
+    branches:
+      - solutions
+
+jobs:
+  update-repo:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_NAME: "GitHub Actions"
+      GITHUB_EMAIL: "actions@github.com"
+      ORG: ${{ secrets.ORG }}
+      TARGET_REPO: ${{ secrets.TARGET_REPO }}
+      USERNAME: ${{ secrets.USERNAME }}
+      COMMIT_MSG: ${{ secrets.COMMIT_MSG }}
+    steps:
+      - name: Check enabled
+        id: enable-check
+        run: |
+          if [ "${{ secrets.ENABLED }}" != '' ]; then
+            echo "enabled=true" >> $GITHUB_OUTPUT;
+          else
+            echo "enabled=false" >> $GITHUB_OUTPUT;
+          fi
+      - uses: actions/checkout@v3
+        if: ${{ steps.enable-check.outputs.enabled == 'true' }}
+      - name: Configure Identity
+        if: ${{ steps.enable-check.outputs.enabled == 'true' }}
+        run: |
+          git config --global user.name $GITHUB_NAME
+          git config --global user.email $GITHUB_EMAIL
+      - name: Push changes to target repository
+        if: ${{ steps.enable-check.outputs.enabled == 'true' }}
+        env:
+          PAT: ${{ secrets.PAT }}
+        run: |
+          cd ..
+          git clone https://$USERNAME:$PAT@github.com/$ORG/$TARGET_REPO.git
+          cd $TARGET_REPO
+          git checkout solutions
+          find . -not -path "./.git/*" -not -path "./.git" | (xargs rm -rf || true)
+          cd ..
+          rsync -av --exclude='.git' --include='.*' $GITHUB_WORKSPACE/ $TARGET_REPO/
+          cd $TARGET_REPO
+          git add --all
+          git status
+          git commit -m "$COMMIT_MSG [skip ci]"
+          git push -u origin solutions --force
