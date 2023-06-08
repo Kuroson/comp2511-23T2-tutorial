@@ -9,8 +9,13 @@ public class Rectangle extends Shape {
     public int height;
     public int width;
 
+    /**
+     * Create reactangle 
+     * @param color
+     */
     public Rectangle(String color) {
         super(color); // => Calling constructor of parent `Shape(String color)`
+        // prints something into the terminal => too verbose or too
         System.out.println("Inside Rectangle constructor with one argument");
     }
 
