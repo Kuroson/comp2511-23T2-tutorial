@@ -11,12 +11,16 @@ public class DiscountStrategy implements ChargingStrategy {
 
     @Override
     public double cost(List<Meal> order, boolean payeeIsMember) {
-        return 0;
+        if (payeeIsMember) {
+            return order.stream().mapToDouble(meal -> meal.getCost() * 0.85).sum();
+        } else {
+            return order.stream().mapToDouble(meal -> meal.getCost()).sum();
+        }
     }
 
     @Override
     public double standardChargeModifier() {
-        return 0;
+        return 1;
     }
 
 }
