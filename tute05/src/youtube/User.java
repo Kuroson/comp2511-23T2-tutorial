@@ -3,7 +3,7 @@ package youtube;
 /**
  * Observer
  */
-public class User {
+public class User implements Observer {
     private String name;
 
     public User(String name) {
@@ -11,11 +11,15 @@ public class User {
     }
 
     public void subscribeTo(Producer user) {
-        // TODO
+        user.addSubscriber(this);
     }
 
+    /**
+     * update method
+     * @param video
+     */
     public void alertNewVideo(Video video) {
-        // TODO
+        System.out.println(this.name + " " + video.getName());
     }
 
     @Override
