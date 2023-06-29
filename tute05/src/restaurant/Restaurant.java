@@ -41,6 +41,10 @@ public class Restaurant {
             this.chargingStrategy = new StandardStrategy();
         } else if (name.equals("Holiday")) {
             this.chargingStrategy = new HolidayStrategy();
+        } else if (name.equals("Discount")) {
+            this.chargingStrategy = new DiscountStrategy();
+        } else {
+            this.chargingStrategy = new HappyHourStrategy();
         }
     }
 
