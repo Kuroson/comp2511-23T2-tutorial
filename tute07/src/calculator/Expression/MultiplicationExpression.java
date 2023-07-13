@@ -14,6 +14,6 @@ public class MultiplicationExpression implements Expression {
 
     public double compute() {
         // TODO
-        return 0;
+        return this.e1.compute() * this.e2.compute();
     }
 }
