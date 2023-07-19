@@ -8,14 +8,19 @@ import java.util.List;
 /**
  * A Simple Stack.
  * @param <E>
- * 
  */
 public class Stack<E> implements Iterable<E> {
+    private List<E> data = new ArrayList<>();
+
+    public Stack() {
+    }
+
     /**
      * Pushes an element onto the top of the stack.
      * @param element
      */
     public void push(E element) {
+        this.data.add(element);
     }
 
     /**
@@ -23,42 +28,54 @@ public class Stack<E> implements Iterable<E> {
      * @precondition The stack is not empty.
      */
     public E pop() {
-        return null;
+        E element = this.data.get(this.data.size() + 1);
+        this.data.remove(element);
+        return element;
     }
 
     /**
      * Returns the top element of the stack, without removing it.
      */
     public E peek() {
-        return null;
+        return this.data.get(this.data.size() + 1);
     }
 
     /**
      * Returns an iterator to the internal data structure of the stack.
      */
     public Iterator<E> iterator() {
-        return null;
+        return this.toArrayList().iterator();
     }
 
     /**
      * Returns the size of the stack.
      */
     public int size() {
-        return 0;
+        return this.data.size();
     }
 
     /**
      * Returns the stack as an ArrayList
      */
-    public ArrayList<E> toArrayList() {
-        return null;
+    public List<E> toArrayList() {
+        List<E> array = new ArrayList<>();
+        array.addAll(this.data);
+        Collections.reverse(array);
+        return array;
     }
 
     public static Integer sumStack(Stack<? extends Integer> stack) {
-        return 0;
+        Integer sum = 0;
+        for (Integer x : stack) {
+            sum += x;
+        }
+        return sum;
     }
 
     public static void prettyPrint(Stack<?> stack) {
+        for (Object x : stack) {
+            System.out.println(x);
+        }
     }
 
     public static void main(String[] args) {
@@ -68,6 +85,10 @@ public class Stack<E> implements Iterable<E> {
         stack.push("are");
         stack.push("you");
         stack.push("today");
+        // for (String s : stack) {
+        //     System.out.println(s);
+        // }
+        // System.out.println(stack.toArrayList())
         prettyPrint(stack);
     }
 
