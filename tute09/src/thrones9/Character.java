@@ -45,7 +45,7 @@ public abstract class Character {
      * If it is a valid move but the square is occupied, attacks the character and returns ATTACK
      * If it is a valid move and the square is free, returns SUCCESS
      */
-    public MoveResult makeMove(int x, int y, List<Character> characters) {
+    public final MoveResult makeMove(int x, int y, List<Character> characters) {
         // This function uses two abstract methods (AKA 'hook methods') which the concrete classes must implement
         if (!canMove(this.x - x, this.y - y)) {
             return MoveResult.INVALID;

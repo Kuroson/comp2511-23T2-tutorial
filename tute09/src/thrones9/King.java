@@ -7,6 +7,31 @@ package thrones9;
  * @author Robert Clifton-Everest
  *
  */
-public class King {
+public class King extends Character {
+    private static int ATTACK_DMG = 8;
 
+    public King(int x, int y) {
+        super(x, y);
+    }
+
+    /**
+    * This character attacks the given victim, causing them damage according to
+    * their rules.
+    *
+    * @param victim
+    */
+    public void attack(Character victim) {
+        victim.damage(ATTACK_DMG);
+    }
+
+    /**
+     * Can this character move by the given amount along the x and y axes.
+     *
+     * @param x
+     * @param y
+     * @return True if they can move by that amount, false otherwise
+     */
+    public boolean canMove(int dx, int dy) {
+        return Math.abs(dx) <= 1 && Math.abs(dy) <= 1;
+    }
 }
